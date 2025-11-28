@@ -1,50 +1,51 @@
-1class Solution {
-2    int res = 0;
-3
-4    public boolean safe(int i, int j, int m, int n, int[][] matrix) {
-5        return i >= 0 && i < m && j >= 0 && j < n && matrix[i][j] != -1;
-6    }
-7
-8
-9    public void check(int[][] matrix, int i, int j, int m, int n, int c) {
-10        
-11        if (matrix[i][j] == 2) {
-12            if (c == 0) res++; 
-13            return;
-14        }
-15
-16        
-17        matrix[i][j] = -1;
-18
-19  
-20        if (safe(i + 1, j, m, n, matrix)) check(matrix, i + 1, j, m, n, c - 1);
-21        if (safe(i - 1, j, m, n, matrix)) check(matrix, i - 1, j, m, n, c - 1);
-22        if (safe(i, j + 1, m, n, matrix)) check(matrix, i, j + 1, m, n, c - 1);
-23        if (safe(i, j - 1, m, n, matrix)) check(matrix, i, j - 1, m, n, c - 1);
-24
-25   
-26        matrix[i][j] = 0;
-27    }
-28
-29    public int uniquePathsIII(int[][] matrix) {
-30        int m = matrix.length;
-31        int n = matrix[0].length;
-32        int c = 1;
-33
-34        int startX = 0, startY = 0;
-35
-36        for (int i = 0; i < m; i++) {
-37            for (int j = 0; j < n; j++) {
-38                if (matrix[i][j] == 0) c++;
-39                else if (matrix[i][j] == 1) {
-40                    startX = i;
-41                    startY = j;
-42                }
-43            }
-44        }
-45
-46        check(matrix, startX, startY, m, n, c);
-47        return res;
-48    }
-49}
-50
+1class Solution {int res=0;
+2   public boolean safe(int i,int j,int grid[][]){
+3            if(i>=0 && j>=0 && i<grid.length && j<grid[0].length && grid[i][j]!=-1){
+4                return true;
+5            }
+6            else{
+7                return false;
+8            }
+9        }
+10         public void check(int [][] grid, int i,int j,int c){
+11            if(grid[i][j]==2){
+12                if(c==0){
+13                    res++;
+14                    return;
+15                }
+16            }
+17            int temp=grid[i][j];
+18            grid[i][j]=-1;
+19            if(safe(i+1,j,grid)){
+20                check(grid,i+1,j,c-1);
+21            }
+22             if(safe(i-1,j,grid)){
+23                check(grid,i-1,j,c-1);
+24            }
+25             if(safe(i,j+1,grid)){
+26                check(grid,i,j+1,c-1);
+27            }
+28             if(safe(i,j-1,grid)){
+29                check(grid,i,j-1,c-1);
+30            }
+31            grid[i][j]=temp;
+32        }
+33    public int uniquePathsIII(int[][] grid) {
+34        int c=1;
+35        int sx=0;
+36        int sy=0;
+37        for(int i=0;i<grid.length;i++){
+38            for(int j=0;j<grid[0].length;j++){
+39                if(grid[i][j]==0){
+40                    c++;
+41                }
+42                else if(grid[i][j]==1){
+43                 sx=i;
+44                 sy=j;   
+45                }
+46            }
+47        }
+48        check(grid,sx,sy,c);
+49        return res;
+50    }
+51}
