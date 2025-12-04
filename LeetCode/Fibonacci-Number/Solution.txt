@@ -1,0 +1,18 @@
+1// space optimisation
+2
+3class Solution {
+4    public int fib(int n) {
+5        if(n<=1){
+6            return n;
+7        }
+8         int p1 = 0;
+9        int p2 = 1;
+10        int curr = 0;
+11        for (int i = 2; i <= n; i++) {
+12            curr = p1 + p2;
+13            p1 = p2;
+14            p2 = curr;
+15        }
+16        return curr;
+17    }
+18}
