@@ -1,0 +1,54 @@
+1class Solution {
+2    public static void solve(int arr[], int t, int sum, List<List<Integer>> list, List<Integer> way,int idx) {
+3        if (sum > t || idx>=arr.length ) {
+4            return;
+5        }
+6        if (sum == t) {
+7            list.add(new ArrayList<>(way));
+8            return;
+9        }
+10        // for (int i = 0; i < arr.length; i++) {
+11        //     way.add(arr[i]);
+12        //     solve(arr, t, sum + arr[i], list, way);
+13        //     way.remove(way.size() - 1);
+14        // }
+15
+16
+17//      for(int i = 0; i < arr.length; i++) {
+18//     way.add(arr[i]);
+19//     solve(arr, t, sum + arr[i], list, way);
+20//     way.remove(way.size() - 1);
+21// }
+22        
+23        way.add(arr[idx]);
+24        solve(arr, t, sum + arr[idx], list, way, idx);
+25        way.remove(way.size() - 1);
+26        solve(arr, t, sum, list, way, idx + 1);
+27
+28    }
+29
+30    public List<List<Integer>> combinationSum(int[] arr, int t) {
+31           List<List<Integer>> list = new ArrayList<>();
+32            int sum = 0;
+33        solve(arr, t, sum, list, new ArrayList<>(),0);
+34        return list;
+35    }
+36}
+37
+38
+39// import java.util.ArrayList;
+40// import java.util.List;
+41
+42// class combinationsum {
+43
+44    
+45//     public static void main(String[] args) {
+46     
+47//         int arr[] = {2, 3, 6, 7};
+48//         int t = 7;
+49       
+50//         System.out.println(list);
+51
+52//     }
+53// }
+54
