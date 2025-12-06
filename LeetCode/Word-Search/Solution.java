@@ -14,15 +14,15 @@
 14        //     return true;
 15        // }
 16       
-17        if(w==word.length() ){
+17        if(w==word.length()){
 18            return true;
 19        }
-20         if ((!safe(grid,i,j)) || grid[i][j] != word.charAt(w)  ) {
+20         if ( !safe(grid,i,j) || grid[i][j] != word.charAt(w)) {
 21             return false;
 22        }
 23        char temp=grid[i][j];
 24        grid[i][j]='#';
-25        if(solve(grid,word,i+1,j,w+1)){
+25        if( solve(grid,word,i+1,j,w+1)){
 26                return true;
 27        }
 28          if( solve(grid,word,i-1,j,w+1)){
@@ -31,7 +31,7 @@
 31          if( solve(grid,word,i,j+1,w+1)){
 32                return true;
 33        }
-34          if(solve(grid,word,i,j-1,w+1)){
+34          if( solve(grid,word,i,j-1,w+1)){
 35           
 36            return true;
 37        }
