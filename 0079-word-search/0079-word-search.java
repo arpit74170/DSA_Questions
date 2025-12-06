@@ -14,15 +14,15 @@ class Solution {
         //     return true;
         // }
        
-        if(w==word.length() ){
+        if(w==word.length()){
             return true;
         }
-         if ((!safe(grid,i,j)) || grid[i][j] != word.charAt(w)  ) {
+         if ( !safe(grid,i,j) || grid[i][j] != word.charAt(w)) {
              return false;
         }
         char temp=grid[i][j];
         grid[i][j]='#';
-        if(solve(grid,word,i+1,j,w+1)){
+        if( solve(grid,word,i+1,j,w+1)){
                 return true;
         }
           if( solve(grid,word,i-1,j,w+1)){
@@ -31,7 +31,7 @@ class Solution {
           if( solve(grid,word,i,j+1,w+1)){
                 return true;
         }
-          if(solve(grid,word,i,j-1,w+1)){
+          if( solve(grid,word,i,j-1,w+1)){
            
             return true;
         }
