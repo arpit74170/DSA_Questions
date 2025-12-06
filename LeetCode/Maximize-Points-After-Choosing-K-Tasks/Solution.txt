@@ -1,0 +1,30 @@
+1class Solution {
+2    public long maxPoints(int[] a, int[] b, int k) {
+3     
+4        int n = a.length;
+5        int[] diff = new int[n];
+6
+7        long base = 0;
+8        for (int i = 0; i < n; i++) {
+9            base += b[i];
+10            diff[i] = a[i] - b[i];
+11        }
+12
+13        Arrays.sort(diff);
+14        for (int i = 0, j = n - 1; i < j; i++, j--) {
+15            int t = diff[i];
+16            diff[i] = diff[j];
+17            diff[j] = t;
+18        }
+19
+20        long res = base;
+21
+22        for (int i = 0; i < k; i++) res += diff[i];
+23        for (int i = k; i < n; i++) if (diff[i] > 0) res += diff[i];
+24
+25        return  res;
+26    }
+27}
+28
+29
+30
