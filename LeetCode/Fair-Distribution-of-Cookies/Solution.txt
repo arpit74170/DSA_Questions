@@ -1,0 +1,28 @@
+1class Solution {
+2    int res = Integer.MAX_VALUE;
+3
+4    public void solve(int cookies[], int k, int arr[], int idx) {
+5        if (idx > cookies.length - 1) {
+6            int max = 0;
+7            for (int c : arr) {
+8                max = Math.max(c, max);
+9            }
+10            res = Math.min(res, max);
+11
+12            return;
+13        }
+14
+15        for (int i = 0; i < k; i++) {
+16            arr[i] += cookies[idx];
+17            solve(cookies, k, arr, idx + 1);
+18            arr[i] -= cookies[idx];
+19        }
+20    }
+21
+22    public int distributeCookies(int[] cookies, int k) {
+23        int arr[] = new int[k];
+24        solve(cookies, k, arr, 0);
+25        return res;
+26
+27    }
+28}
