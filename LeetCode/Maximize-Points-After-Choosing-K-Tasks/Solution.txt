@@ -1,30 +1,45 @@
 1class Solution {
-2    public long maxPoints(int[] a, int[] b, int k) {
-3     
-4        int n = a.length;
-5        int[] diff = new int[n];
-6
-7        long base = 0;
-8        for (int i = 0; i < n; i++) {
-9            base += b[i];
-10            diff[i] = a[i] - b[i];
-11        }
-12
-13        Arrays.sort(diff);
-14        for (int i = 0, j = n - 1; i < j; i++, j--) {
-15            int t = diff[i];
-16            diff[i] = diff[j];
-17            diff[j] = t;
-18        }
-19
-20        long res = base;
-21
-22        for (int i = 0; i < k; i++) res += diff[i];
-23        for (int i = k; i < n; i++) if (diff[i] > 0) res += diff[i];
-24
-25        return  res;
-26    }
-27}
-28
-29
+2    public long maxPoints(int[] t1, int[] t2, int k) {
+3    long sum = 0;
+4        int a1[][] = new int[t1.length][2];
+5        for (int i = 0; i < t1.length; i++) {
+6            a1[i][0] = i;
+7            a1[i][1] = t1[i] - t2[i];
+8        }
+9        Arrays.sort(a1, (a, b) -> Integer.compare(b[1], a[1]));
+10
+11        // for (int i = 0; i < a1.length; i++) {
+12        //     System.out.print(a1[i][0]);
+13        //     System.out.println(a1[i][1]);
+14        // }
+15        for (int i = 0; i < k; i++) {
+16            sum += t1[a1[i][0]];
+17        }
+18        for (int i = k; i < t1.length; i++) {
+19            if (t1[a1[i][0]] > t2[a1[i][0]]) {
+20                sum += t1[a1[i][0]];
+21            } else {
+22                sum += t2[a1[i][0]];
+23            }
+24        }
+25        return sum;
+26
+27
+28    }
+29}
 30
+31
+32// import java.util.Arrays;
+33
+34// public class maximize_points_after_choosing_k_tasks {
+35
+36//     public static void main(String[] args) {
+37//         int t1[] = {5, 10, 2};
+38//         int t2[] = {10, 8, 3};
+39//         int k = 2;
+40        
+41//         System.out.println(sum);
+42
+43//     }
+44// }
+45
