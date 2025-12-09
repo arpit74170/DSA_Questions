@@ -1,0 +1,38 @@
+1class Solution {
+2      public static int solve(int nums[], int i, int[] dp, int end) {
+3        if (i >= end) {
+4            return 0;
+5        }
+6        if (dp[i] != -1) {
+7            return dp[i];
+8        }
+9
+10        // if (i != nums.length - 1) {
+11        int left = solve(nums, i + 2, dp, end) + nums[i];
+12        int right = solve(nums, i + 1, dp, end);
+13        dp[i] = Math.max(left, right);
+14
+15        // }
+16        return dp[i];
+17
+18    }
+19
+20    public int rob(int[] nums) {
+21     if(nums.length==1){
+22        return nums[0];
+23     }
+24        int dp[] = new int[nums.length];
+25        for (int i = 0; i < dp.length; i++) {
+26            dp[i] = -1;
+27        }
+28        int rob1 = solve(nums, 1, dp, nums.length );
+29        for (int i = 0; i < dp.length; i++) {
+30            dp[i] = -1;
+31        }
+32        int rob2 = solve(nums, 0, dp, nums.length-1);
+33        // System.out.println(rob1);
+34        // System.out.println(rob2);
+35            return Math.max(rob1, rob2);
+36    }
+37}
+38
