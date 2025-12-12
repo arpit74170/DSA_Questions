@@ -1,0 +1,50 @@
+1class Solution {
+2      public static int solve(List<List<Integer>> t, int i, int j,Integer dp[][]) {
+3        if (i == t.size() - 1) {
+4            return t.get(i).get(j);
+5
+6        }
+7        if(dp[i][j]!=null){
+8            return dp[i][j];
+9        }
+10
+11        int p1 = solve(t, i + 1, j + 1,dp);
+12        int p2 = solve(t, i + 1, j,dp);
+13        dp[i][j]=t.get(i).get(j) + Math.min(p1, p2);
+14        return dp[i][j];
+15
+16    }
+17
+18    public int minimumTotal(List<List<Integer>> t) {
+19    
+20        //  int dp[][]=new int [t.size()][t.size()];
+21         Integer[][] dp = new Integer[t.size()][t.size()];
+22
+23
+24        int ans = solve(t, 0, 0,dp);
+25        return ans;
+26    }
+27}
+28
+29// class Solution {
+30
+31//     public int minimumTotal(List<List<Integer>> triangle) {
+32//         int n = triangle.size();
+33//         Integer[][] dp = new Integer[n][n];
+34//         return solve(0, 0, triangle, dp);
+35//     }
+36
+37//     private int solve(int i, int j, List<List<Integer>> t, Integer[][] dp) {
+38//         if (i == t.size() - 1) {
+39//             return t.get(i).get(j);
+40//         }
+41
+42//         if (dp[i][j] != null) return dp[i][j];
+43
+44//         int down = solve(i + 1, j, t, dp);
+45//         int diag = solve(i + 1, j + 1, t, dp);
+46
+47//         dp[i][j] = t.get(i).get(j) + Math.min(down, diag);
+48//         return dp[i][j];
+49//     }
+50// }
