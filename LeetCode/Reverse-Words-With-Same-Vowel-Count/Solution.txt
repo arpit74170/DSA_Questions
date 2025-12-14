@@ -1,38 +1,37 @@
 1class Solution {
-2      public String reverse(String word) {
-3        char[] arr = word.toCharArray();
-4        int l = 0, r = arr.length - 1;
-5        while (l < r) {
-6  char temp = arr[l];
-7            arr[l] = arr[r];
-8            arr[r] = temp;
-9            l++;
-10            r--;
-11        }
-12        return new String(arr);
-13    }
-14     public int countVowels(String word) {
-15        int count = 0;
-16        for (int i = 0; i < word.length(); i++) {
-17            char c = word.charAt(i);
-18    if (c == 'a' || c == 'e' || c == 'i' ||
-19                c == 'o' || c == 'u') {
-20                count++;
-21            }
-22        }
-23        return count;
-24    }
-25    public String reverseWords(String s) {
-26        String parivontel = s;
-27
-28        String[] words = parivontel.split(" ");
-29        int firstVowelCount = countVowels(words[0]);
-30
-31        for (int i = 1; i < words.length; i++) {
-32        if (countVowels(words[i]) == firstVowelCount) {
-33        words[i] = reverse(words[i]);
-34            }
-35        }
-36           return String.join(" ", words);
-37    }
-38}
+2    public String reverse(String s){
+3        char arr[]=s.toCharArray();
+4        int si=0;
+5        int ei=s.length()-1;
+6        while(si<ei){
+7            char t=arr[si];
+8            arr[si]=arr[ei];
+9            arr[ei]=t;
+10            si++;
+11            ei--;
+12        }
+13         return new String(arr);
+14    }
+15    public static int countvowel(String s){
+16        int c=0;
+17        for(int i=0;i<s.length();i++){
+18            if(s.charAt(i)=='a' ||s.charAt(i)=='e' ||s.charAt(i)=='i' ||s.charAt(i)=='o' ||s.charAt(i)=='u' ){
+19                c++;
+20            }
+21        }
+22        return c;
+23    }
+24    public String reverseWords(String s) {
+25        String arr2[]=s.split(" ");
+26        int vowel1=countvowel(arr2[0]);
+27        for(int i=1;i<arr2.length;i++){
+28            if(countvowel(arr2[i])==vowel1){
+29                arr2[i]=reverse(arr2[i]);
+30            }
+31        }
+32         
+33        return String.join(" ", arr2);
+34
+35    }
+36   
+37}
