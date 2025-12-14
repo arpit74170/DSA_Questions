@@ -1,0 +1,15 @@
+1class Solution {
+2    public int absDifference(int[] nums, int k) {
+3        if(k==0 || nums.length==1 ){
+4            return 0;
+5        }
+6        Arrays.sort(nums);
+7        long sum1=0;
+8        long sum2=0;
+9        for(int i=0;i<k;i++){
+10            sum1=nums[i]+sum1;
+11             sum2=sum2+nums[nums.length-1-i];
+12        }
+13        return (int)Math.abs(sum1-sum2);
+14    }
+15}
