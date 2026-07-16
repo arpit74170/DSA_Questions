@@ -1,0 +1,21 @@
+1class Solution {
+2        public static int gcd(int a, int b) {
+3        if (b == 0)
+4            return Math.abs(a);
+5        return gcd(b, a % b);
+6    }
+7    public int gcdOfOddEvenSums(int n) {
+8        int sumodd=0;
+9        int sumeven=0;
+10        for(int i=1;i<=n*2;i++){
+11            if(i%2==0){
+12                sumeven+=i;
+13            }
+14            else{
+15                sumodd+=i;
+16            }
+17        }
+18
+19       return  gcd(sumodd,sumeven);
+20    }
+21}
